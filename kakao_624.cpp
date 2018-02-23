@@ -3,10 +3,7 @@
 
 using namespace std;
 
-int main(){
-    string sentence;
-    cin>>sentence;
-    string answer;
+string solution(string sentence){
     if(sentence[0]>='a' && sentence[0]<='z'){
         char target=sentence[0];
         for(int i=1;i<sentence.size();i++){
@@ -25,4 +22,14 @@ int main(){
         }
         sentence.erase(0,sentence.size()-1);
     }
+    cout<<sentence;
+}
+
+int main(){
+    string sentence;
+    cin>>sentence;
+    
+    string answer;
+    answer=solution(sentence);
+    cout<<answer;
 }
