@@ -18,7 +18,31 @@ int main(){
     string input;
     cin>>input;
 
+    // 사전 작업 : 입력이 올바른 괄호 짝의 합으로 이루어져 있는지 테스트 합니다.
+    stack<char> s;
+    for( int i=0;i<input.size();i++){
+        char c=input[i];
+        
+        if(c == '(' || c =='['){
+            s.push(c);
+        }else if( (c == ')' || c ==']') && s.size() !=0 ){
+            if( (s.top() == '(' && c== ')') || (s.top()=='[' &&c==']')){
+                s.pop();
+                
+            }else{
+                cout << 0;
+                return 0;
+            }
+        }
+    }
+    if(s.size() !=0){
+        cout<<0;
+        return 0;
+    }
+    // --- 사전작업 끝 ---
+
     vector< vector<int> > v;
+    // DP 첫번째 데이터
     // cout << input[0] <<", ";
     v.push_back(vector<int>(2,0));
     if( input[0] == '(' ) v[0][0]++;
@@ -27,7 +51,7 @@ int main(){
     else if( input[0] == ']') v[0][1]--;
     // cout << v[0][0] << ", " << v[0][1] << endl;
 
-    // 0. result=0
+    // 0. result=0 
     int result = 0;
     for( int i=1; i < input.size() ; i++ ){
         char post_c = input[i-1];
